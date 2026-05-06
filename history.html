@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story | Saanjh Café</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        .lenis.lenis-stopped { overflow: hidden; }
+    </style>
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* History Page Specifics */
+        .history-hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .page-hero-img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .gradient-fade {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to top, var(--espresso), transparent);
+            z-index: 1;
+        }
+
+        .history-title-wrap {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .history-body {
+            padding: 10rem 0;
+            position: relative;
+            background: var(--espresso);
+            z-index: 2;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .st-img-1 {
+            grid-column: 2 / 7;
+            height: 80vh;
+            position: relative;
+        }
+        
+        .st-text-1 {
+            grid-column: 7 / 12;
+            padding-left: 4rem;
+        }
+
+        .st-img-2 {
+            grid-column: 7 / 13;
+            height: 70vh;
+            position: relative;
+            margin-top: 10rem;
+        }
+
+        .st-text-2 {
+            grid-column: 2 / 6;
+            margin-top: 10rem;
+        }
+
+        .history-img-inner {
+            width: 100%; height: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .history-img-inner img {
+            width: 100%; height: 120%;
+            object-fit: cover;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="loading">
+    <div class="noise"></div>
+    <div class="page-transition"></div>
+    
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo page-link" data-magnetic>Saanjh</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link page-link" data-magnetic>Home</a>
+                <a href="history.html" class="nav-link active" data-magnetic>Story</a>
+                <a href="menu.html" class="nav-link page-link" data-magnetic>Menu</a>
+                <a href="gallery.html" class="nav-link page-link" data-magnetic>Gallery</a>
+                <a href="contact.html" class="nav-link page-link" data-magnetic>Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="scroll-container">
+        <section class="history-hero">
+            <img src="hero.jpg" alt="Saanjh Origins" class="page-hero-img" data-depth="0.05">
+            <div class="gradient-fade"></div>
+            
+            <div class="history-title-wrap">
+                <h1 class="ed-title" data-depth="0.1">Our <em>Story</em></h1>
+                <p class="page-desc" data-depth="0.15" style="font-size: 1.5rem; max-width: 600px; margin: 0 auto; color: var(--soft-beige);">
+                    Saanjh was born from late-night conversations, music, coffee, and a desire to create a space where evenings felt timeless.
+                </p>
+            </div>
+        </section>
+
+        <section class="history-body">
+            <div class="container story-grid">
+                
+                <div class="st-img-1" data-speed="1.1" data-depth="0.03">
+                    <div class="history-img-inner">
+                        <img src="barista.jpg" alt="The Founder" class="parallax-img">
+                        <div class="img-mask"></div>
+                    </div>
+                </div>
+
+                <div class="st-text-1 ed-text-block" data-speed="0.95" data-depth="0.08">
+                    <h2 class="ed-title" style="font-size: 3.5rem;">The First <br><em>Pour</em></h2>
+                    <p class="ed-desc">It started with a simple idea: coffee isn't just a morning ritual. For the night owls, the artists, and the deep thinkers, coffee is the fuel for twilight. We roasted our first beans specifically to be enjoyed as the sun went down—smooth, low acidity, and rich with dark chocolate notes.</p>
+                </div>
+
+                <div class="st-text-2 ed-text-block" data-speed="1.05" data-depth="0.05">
+                    <h2 class="ed-title" style="font-size: 3.5rem;">A Gathering <br><em>Place</em></h2>
+                    <p class="ed-desc">We didn't just build a cafe; we built a sanctuary. The warm amber lighting, the textured walls, and the curated playlists all serve one purpose: to make you feel completely detached from the rush of the city outside.</p>
+                </div>
+
+                <div class="st-img-2" data-speed="0.9" data-depth="0.02">
+                    <div class="history-img-inner">
+                        <img src="party.jpg" alt="Community Gathering" class="parallax-img">
+                        <div class="img-mask"></div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Premium Footer -->
+        <footer class="footer">
+            <div class="container footer-container">
+                <div class="footer-brand">
+                    <h2>Saanjh</h2>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html" class="page-link" data-magnetic>Home</a>
+                    <a href="menu.html" class="page-link" data-magnetic>Menu</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Saanjh. Cinematic Coffee Experience.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="global.js"></script>
+</body>
+</html>
