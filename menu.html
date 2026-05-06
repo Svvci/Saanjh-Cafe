@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Saanjh Café</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific Menu Page Styles */
+        body {
+            overflow: hidden; /* Circular menu handles its own scrolling/dragging */
+            background-color: var(--dark-brown);
+        }
+        
+        .menu-hero {
+            position: absolute;
+            top: 20vh; left: 10vw;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .menu-hero .ed-title {
+            font-size: 6vw;
+            margin-bottom: 1rem;
+        }
+
+        .menu-details {
+            position: absolute;
+            bottom: 15vh; left: 10vw;
+            z-index: 10;
+            max-width: 400px;
+            pointer-events: none;
+        }
+
+        .menu-item-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--warm-cream);
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-item-price {
+            font-family: var(--font-heading);
+            color: var(--amber);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .menu-item-desc {
+            font-family: var(--font-body);
+            color: var(--soft-beige);
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        /* Circular Carousel */
+        .carousel-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .carousel-ring {
+            position: absolute;
+            width: 120vw; height: 120vw;
+            border-radius: 50%;
+            border: 1px solid rgba(210, 140, 70, 0.05);
+            left: 50%; top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .carousel {
+            position: relative;
+            width: 0; height: 0;
+        }
+
+        .carousel-item {
+            position: absolute;
+            top: -200px; left: -150px;
+            width: 300px; height: 400px;
+            transform-origin: center;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            transition: filter 0.5s var(--ease-cinematic);
+            cursor: none;
+        }
+
+        .carousel-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        
+        .carousel-item::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(10,8,7,0.9), transparent);
+            pointer-events: none;
+        }
+
+        /* Drag Hint */
+        .drag-hint {
+            position: absolute;
+            bottom: 5vh; right: 10vw;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 10;
+            color: var(--amber);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .drag-hint .line {
+            width: 50px; height: 1px;
+            background: var(--amber);
+        }
+    </style>
+</head>
+<body class="loading">
+    <div class="noise"></div>
+    <div class="page-transition"></div>
+    
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo page-link" data-magnetic>Saanjh</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link page-link" data-magnetic>Home</a>
+                <a href="menu.html" class="nav-link active" data-magnetic>Menu</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-outline page-link" href="index.html" data-magnetic>Back to Home</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="menu-hero">
+        <h1 class="ed-title">The <em>Menu</em></h1>
+    </div>
+
+    <!-- Dynamic details updated via JS -->
+    <div class="menu-details">
+        <div class="menu-item-title"></div>
+        <div class="menu-item-price"></div>
+        <div class="menu-item-desc"></div>
+    </div>
+
+    <div class="drag-hint">
+        <span>Scroll or Drag</span>
+        <div class="line"></div>
+    </div>
+
+    <div class="carousel-container">
+        <div class="carousel-ring"></div>
+        <div class="carousel">
+            <!-- Items -->
+            <div class="carousel-item" data-title="Hazelnut Latte" data-price="₹350" data-desc="Rich espresso, steamed milk, and roasted hazelnut syrup.">
+                <img src="hazelnut.jpg" alt="Hazelnut Latte">
+            </div>
+            <div class="carousel-item" data-title="Cold Brew" data-price="₹300" data-desc="Steeped for 18 hours, smooth and bold single-origin blend.">
+                <img src="coldbrew.jpg" alt="Cold Brew">
+            </div>
+            <div class="carousel-item" data-title="Saffron Chai" data-price="₹280" data-desc="Traditional Indian spiced tea infused with premium saffron.">
+                <img src="saffron.jpg" alt="Saffron Chai">
+            </div>
+            <div class="carousel-item" data-title="Biscoff Cheesecake" data-price="₹450" data-desc="Creamy NY-style cheesecake with a lotus biscoff crust.">
+                <img src="biscoffcheesecake.jpg" alt="Biscoff Cheesecake">
+            </div>
+            <div class="carousel-item" data-title="Butter Croissant" data-price="₹220" data-desc="Flaky, golden, and baked fresh every morning.">
+                <img src="crossiant.jpg" alt="Croissant">
+            </div>
+            <div class="carousel-item" data-title="Tiramisu" data-price="₹480" data-desc="Classic Italian dessert layered with our signature espresso.">
+                <img src="tiramisu.jpg" alt="Tiramisu">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="global.js"></script>
+    <script src="menu.js"></script>
+</body>
+</html>
